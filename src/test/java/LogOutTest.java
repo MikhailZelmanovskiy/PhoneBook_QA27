@@ -9,12 +9,14 @@ import java.util.List;
 public class LogOutTest extends TestBase{
     @BeforeMethod
     public void preconditions(){
-        wd.findElement(By.linkText("LOGIN")).click();
-        List<WebElement> inputs = wd.findElements(By.tagName("input"));
-        fillByElement(inputs.get(0), "strayn.mike@gmail.com");
-        fillByElement(inputs.get(1), "Mikhail-1988");
-        List<WebElement> buttons = wd.findElements(By.tagName("button"));
-        buttons.get(0).click();
+        if(isElement(By.cssSelector("[href='/login']"))) {
+            wd.findElement(By.linkText("LOGIN")).click();
+            List<WebElement> inputs = wd.findElements(By.tagName("input"));
+            fillByElement(inputs.get(0), "strayn.mike@gmail.com");
+            fillByElement(inputs.get(1), "Mikhail-1988");
+            List<WebElement> buttons = wd.findElements(By.tagName("button"));
+            buttons.get(0).click();
+        }
     }
     @Test
     public void logOutTest(){

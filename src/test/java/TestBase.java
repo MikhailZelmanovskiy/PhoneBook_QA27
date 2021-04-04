@@ -44,4 +44,13 @@ public class TestBase {
             e.printStackTrace();
         }
     }
+    public boolean isElement(By locator){
+        return wd.findElements(locator).size()>0;
+    }
+    public void login(String email, String password){
+        wd.findElement(By.cssSelector("[href='/login']"));
+        fillByLocator(By.cssSelector("[placeholder='Email']"), email);
+        fillByLocator(By.cssSelector("input[placeholder='Password']"), password);
+        wd.findElement(By.cssSelector("button:first-of-type")).click();
+    }
 }
