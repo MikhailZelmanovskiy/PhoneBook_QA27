@@ -18,4 +18,14 @@ public class LoginTest extends TestBase{
         String text = wd.findElement(By.tagName("button")).getText();
         Assert.assertEquals(text,"Sign Out");
     }
+    @Test
+    public void loginTest2(){
+        wd.findElement(By.cssSelector("[href='/login']"));
+        fillByLocator(By.cssSelector("[placeholder='Email']"), "Mona222@gmail.com");
+        fillByLocator(By.cssSelector("input[placeholder='Password']"), "Mona222-11");
+        wd.findElement(By.cssSelector("button:first-of-type")).click();
+        pause(7000);
+        String text = wd.findElement(By.cssSelector("button")).getText();
+        Assert.assertEquals(text,"Sign Out");
+    }
 }

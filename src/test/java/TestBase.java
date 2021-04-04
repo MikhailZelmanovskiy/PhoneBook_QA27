@@ -1,3 +1,4 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,23 +10,34 @@ import java.util.concurrent.TimeUnit;
 
 public class TestBase {
     WebDriver wd;
+
     @BeforeSuite
-    public void init(){
+    public void init() {
         wd = new ChromeDriver();
         wd.manage().window().maximize();
         wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         wd.navigate().to("https://contacts-app.tobbymarshall815.vercel.app/");
     }
+
     @AfterSuite
-    public void rearDown(){
+    public void rearDown() {
         wd.quit();
     }
-    public void fillByElement(WebElement el, String text){
+
+    public void fillByElement(WebElement el, String text) {
         el.click();
         el.clear();
         el.sendKeys(text);
     }
-    public void pause(int millis){
+
+    public void fillByLocator(By locator, String text) {
+        WebElement el = wd.findElement(locator);
+        el.clear();
+        el.click();
+        el.sendKeys(text);
+    }
+
+    public void pause(int millis) {
         try {
             Thread.sleep(millis);
         } catch (InterruptedException e) {
