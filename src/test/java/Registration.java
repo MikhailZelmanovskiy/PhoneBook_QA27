@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 public class Registration extends TestBase{
-    @Test
+    //@Test
     public void RegistrationTest(){
 
         int index = (int)((System.currentTimeMillis()/1000)%3600);
@@ -20,6 +20,20 @@ public class Registration extends TestBase{
         buttons.get(1).click();
         pause(5000);
         String text = wd.findElement(By.tagName("button")).getText();
+        Assert.assertEquals(text,"Sign Out");
+    }
+    @Test
+    public void RegistrationTest2(){
+
+        int index = (int)((System.currentTimeMillis()/1000)%3600);
+        String email = "Tomik" + index + "@gmail.com";
+        String password = "Tomik-" +index;
+        wd.findElement(By.linkText("LOGIN")).click();
+        fillByLocator(By.cssSelector("[placeholder='Email']"),email);
+        fillByLocator(By.cssSelector("[placeholder='Password']"),password);
+        wd.findElement(By.cssSelector(".login_login__3EHKB button:nth-child(5)")).click();
+        pause(5000);
+        String text = wd.findElement(By.cssSelector("button")).getText();
         Assert.assertEquals(text,"Sign Out");
     }
 }
