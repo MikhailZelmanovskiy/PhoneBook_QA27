@@ -11,11 +11,9 @@ public class LogOutTest extends TestBase{
     public void preconditions(){
         if(isElement(By.cssSelector("[href='/login']"))) {
             wd.findElement(By.linkText("LOGIN")).click();
-            List<WebElement> inputs = wd.findElements(By.tagName("input"));
-            fillByElement(inputs.get(0), "strayn.mike@gmail.com");
-            fillByElement(inputs.get(1), "Mikhail-1988");
-            List<WebElement> buttons = wd.findElements(By.tagName("button"));
-            buttons.get(0).click();
+            fillByLocator(By.cssSelector("[placeholder='Email']"),"strayn.mike@gmail.com");
+            fillByLocator(By.cssSelector("[placeholder='Password']"),"Mikhail-1988");
+            wd.findElement(By.cssSelector(".login_login__3EHKB button:nth-child(4)")).click();
         }
     }
     @Test
@@ -23,6 +21,13 @@ public class LogOutTest extends TestBase{
         wd.findElement(By.tagName("button")).click();
         List<WebElement> tagA = wd.findElements(By.tagName("a"));
         String text = tagA.get(2).getText();
+        Assert.assertEquals(text, "LOGIN");
+
+    }
+    @Test
+    public void logOutTest2(){
+        wd.findElement(By.cssSelector("button")).click();
+        String text = wd.findElement(By.cssSelector("#root div a:nth-child(4)")).getText();
         Assert.assertEquals(text, "LOGIN");
 
     }
