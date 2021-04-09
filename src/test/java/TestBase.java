@@ -47,7 +47,7 @@ public class TestBase {
         return wd.findElements(locator).size()>0;
     }
     public void login(String email, String password){
-        wd.findElement(By.cssSelector("[href='/login']"));
+        wd.findElement(By.cssSelector("[href='/login']")).click();
         fillByLocator(By.cssSelector("[placeholder='Email']"), email);
         fillByLocator(By.cssSelector("input[placeholder='Password']"), password);
         wd.findElement(By.cssSelector("button:first-of-type")).click();
