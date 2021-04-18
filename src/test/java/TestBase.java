@@ -21,7 +21,7 @@ public class TestBase {
     @AfterSuite
     public void tearDown() {
 
-        //wd.quit();
+        wd.quit();
     }
 
     public void fillByElement(WebElement el, String text) {

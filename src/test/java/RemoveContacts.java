@@ -43,6 +43,6 @@ public class RemoveContacts extends TestBase{
     }
     @AfterMethod
     public void postConditions(){
-       // wd.findElement(By.cssSelector("button")).click();
+       wd.findElement(By.cssSelector("button")).click();
     }
 }
