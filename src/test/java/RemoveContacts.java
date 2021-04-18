@@ -1,8 +1,11 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class RemoveContacts extends TestBase{
     @BeforeMethod
@@ -15,7 +18,7 @@ public class RemoveContacts extends TestBase{
         }
 
     }
-    @Test
+    //@Test
     public void removeOneContact(){
         wd.findElement(By.cssSelector("[href='/contacts']")).click();
 
@@ -26,8 +29,20 @@ public class RemoveContacts extends TestBase{
         removeBth.click();
 
     }
+    @Test
+    public void removeAllContacts(){
+        wd.findElement(By.xpath("//a[.='CONTACTS']")).click();
+        while (isElement(By.xpath("//div[@class='contact-item_card__2SOIM']")))
+        {
+            WebElement contact = wd.findElement(By.xpath("//div[@class='contact-item_card__2SOIM']"));
+            contact.click();
+            WebElement remove = wd.findElement(By.xpath("//button[.='Remove']"));
+            remove.click();
+            pause(1500);
+        }
+    }
     @AfterMethod
     public void postConditions(){
-        wd.findElement(By.cssSelector("button")).click();
+       // wd.findElement(By.cssSelector("button")).click();
     }
 }

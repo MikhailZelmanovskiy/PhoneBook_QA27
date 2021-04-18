@@ -19,8 +19,9 @@ public class TestBase {
     }
 
     @AfterSuite
-    public void rearDown() {
-        wd.quit();
+    public void tearDown() {
+
+        //wd.quit();
     }
 
     public void fillByElement(WebElement el, String text) {
